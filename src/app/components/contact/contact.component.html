@@ -1,8 +1,32 @@
 <div class="container">
-    <div class="galeria">
-        <div><img src="../../../assets/img/coffee1.jpg" title="Funky roots"></div>
-        <div><img src="../../../assets/img/coffee2.jpg" title="The long and winding road"></div>
-        <div><img src="../../../assets/img/coffee3.jpg" title="Happy trees"></div>
-      </div>
+
+  <h1>Contacto</h1>
+
+  <div id="texto" #textos>
+    <p appResaltado>
+      Esta es la página de contacto; puede enviarnos tus dudas por aquí
+    </p>
+  </div>
+
+  <br>
+  <input type="number" [(ngModel)]="widthSlider" (keyup.enter)="cargarSlider()">
+  <br>
+  <input type="text" [(ngModel)]="captions">
+  <br>
+  <button (click)="cargarSlider()">Cargar Slider</button>
+  <button (click)="resetearSlider()">Resetear Slider</button>
+
+  <br>
+
+  <div *ngIf="anchuraToSlider">
+
+    <slider [anchura]="anchuraToSlider" [etiquetas]="captions" (conseguirAutor)="getAutor($event)"></slider>
+
+  </div>
+
+  <div *ngIf="autor">
+    {{autor.nombre}} - {{autor.website}}
+
+  </div>
 
 </div>

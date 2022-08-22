@@ -1,4 +1,4 @@
-import { Component, OnInit } from '@angular/core';
+import { Component, OnInit, ViewChild } from '@angular/core';
 
 declare var $: any;
 
@@ -9,23 +9,42 @@ declare var $: any;
 })
 export class ContactComponent implements OnInit {
 
-  constructor() { }
+  public widthSlider: number;
+  public anchuraToSlider:number;
+  public captions: boolean;
+  public autor: any;
+  
+  @ViewChild("textos") textos: any;
+
+  constructor() { 
+    this.widthSlider=0;
+    this.anchuraToSlider=0;
+    this.captions=false;
+  }
 
   ngOnInit(): void {
-    $("#logo").click(function (e: any) {
-      e.preventDefault();
-      $("header").css("background", "green")
-        .css("height", "50px")
-    });
 
-    // $(".galeria").css("border","5px solid blue")
+    var opcion_clasica=document.querySelector("#texto")?.innerHTML
+    console.log("Con JavaScript:",opcion_clasica);
 
-    $('.galeria').bxSlider({
-      mode: 'fade',
-      captions: true,
-      slideWidth: 400
-    });
+  }
 
+  ngAfterViewInit() {
+    console.log("Con Viewchild:",this.textos)
+    console.log("Imprimo el texto con Viewchild:",this.textos.nativeElement.textContent)
+  }  
+
+  cargarSlider(){
+    this.anchuraToSlider=this.widthSlider;
+  }
+
+  resetearSlider(){
+    this.anchuraToSlider=0;
+  }
+
+  getAutor(event:any){
+    console.log(event);
+    this.autor=event;
   }
 
 }
